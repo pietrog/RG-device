@@ -1,41 +1,45 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { ServerService } from './server-com.service.ts';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { EventListPage } from '../pages/event-list/event-list';
+import { LoginPage } from '../pages/login/login';
+import { ScanPage } from '../pages/scan/scan';
+import { ScanResultPage } from '../pages/scan-result/scan-result';
+import { Api } from '../providers/api';
+import { User } from '../providers/user';
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
-
 @NgModule({
-    declarations: [
-	MyApp,
-	HomePage,
-	ListPage
-    ],
-    imports: [
-	BrowserModule,
-	HttpModule,
-	IonicModule.forRoot(MyApp),
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-	MyApp,
-	HomePage,
-	ListPage
-    ],
-    providers: [
-	StatusBar,
-	SplashScreen,
-	ServerService,
-	BarcodeScanner,
-	{provide: ErrorHandler, useClass: IonicErrorHandler}
-    ]
+  declarations: [
+    MyApp,
+    EventListPage,
+    LoginPage,
+    ScanPage,
+    ScanResultPage
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    EventListPage,
+    LoginPage,
+    ScanPage,
+    ScanResultPage
+  ],
+  providers: [{ provide: ErrorHandler, useClass: IonicErrorHandler },
+    Api,
+    User,
+    StatusBar,
+    SplashScreen,
+    BarcodeScanner
+  ]
 })
-export class AppModule {}
+export class AppModule { }
