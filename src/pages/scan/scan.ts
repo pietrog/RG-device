@@ -22,8 +22,8 @@ export class ScanPage {
   }
 
   ionViewDidLoad() {
-    this.eventId = this._navParams.get('eventId');
-    this.eventTitle = this._navParams.get('eventTitle');
+    //this.eventId = this._navParams.get('eventId');
+    //this.eventTitle = this._navParams.get('eventTitle');
 
     this.buttonText = "Scan";
     this.loading = false;

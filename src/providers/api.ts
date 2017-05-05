@@ -4,32 +4,33 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class Api {
-  private headers = new Headers();
-  private userAuth: string;
+    private headers = new Headers();
+    private userAuth: string;
 
-  constructor(private _http: Http) {
-    console.log('Hello Api Provider');
-  }
+    constructor(private _http: Http) {
+	console.log('Hello Api Provider');
+    }
 
-  public addHeader(headerKey: string, headerContent) {
-    this.headers.append(headerKey, headerContent);
-  }
+    public addHeader(headerKey: string, headerContent) {
+	this.headers.append(headerKey, headerContent);
+    }
 
-  public setUserAuth(email: string, password: string) {
-    this.userAuth = "Basic " + btoa(`${email}:${password}`);
-    this.addHeader("Authorization", this.userAuth);
-  }
+    public setUserAuth(email: string, password: string) {
+	//this.userAuth = "Basic " + btoa(`${email}:${password}`);
+	this.userAuth = email;
+	this.addHeader("Authorization", this.userAuth);
+    }
 
-  public getUserAuth() {
-    return this.userAuth;
-  }
+    public getUserAuth() {
+	return this.userAuth;
+    }
 
-  public get() {
-    // this._http.get(url, {
-    // headers: this.headers
-    // })
-    //   .map(res => res.json())
-    //   .subscribe(value, error, complete);
-  }
+    public get() {
+	// this._http.get(url, {
+	// headers: this.headers
+	// })
+	//   .map(res => res.json())
+	//   .subscribe(value, error, complete);
+    }
 
 }
