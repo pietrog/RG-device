@@ -1,6 +1,26 @@
 {
-  "name": "QRScanner",
-  "app_id": "",
-  "v2": true,
-  "typescript": true
+    "name": "QRScanner",
+    "app_id": "",
+    "v2": true,
+    "typescript": true,
+    "gulpStartupTasks": [
+	"sass",
+	"watch"
+    ],
+    "watchPatterns": [
+	"www/**/*",
+	"!www/lib/**/*",
+	"!www/**/*.map"
+    ],
+    "proxies": [
+	{
+	    "path": "/api/device/validateGoal",
+	    "proxyUrl": "http://192.168.0.21:3000/api/device/validateGoal"
+	},
+	{
+	    "path": "/api/player/idFromName",
+	    "proxyUrl": "http://192.168.0.21:3000/api/player/idFromName"
+	}
+
+    ]
 }

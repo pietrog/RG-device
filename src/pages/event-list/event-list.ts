@@ -7,6 +7,7 @@ import { StatsPage } from '../stats/stats';
 
 import { Api } from '../../providers/api';
 
+
 @Component({
     selector: 'page-event-list',
     templateUrl: 'event-list.html'
@@ -14,6 +15,8 @@ import { Api } from '../../providers/api';
 export class EventListPage {
 
     public user: string;
+    public id_user: string;
+    public message: string;
     
     constructor(
 	private _nav: NavController,
@@ -22,6 +25,7 @@ export class EventListPage {
 
     ionViewDidLoad() {
 	this.user = this._api.getUserAuth();
+	this.id_user = this._api.getUserID();
     }
 
     public scanGoal() {
@@ -29,8 +33,6 @@ export class EventListPage {
     }
 
     public healBoy() {
-	//this._nav.
-	//decrement on server
     }
 
     public checkMap() {

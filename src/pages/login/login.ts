@@ -45,7 +45,7 @@ export class LoginPage {
 
 	let loading = this._loadingController.create({
 	    content: "Connexion...",
-	    duration: 1500
+	    duration: 10
 	});
 
 	loading.present();
@@ -54,12 +54,14 @@ export class LoginPage {
 	this.newUser.email = this.loginFormControl.get("email").value.trim();
 	this.newUser.password = this.loginFormControl.get("password").value;
 
-	this._api.setUserAuth(this.newUser.email, this.newUser.password);
-	
-	// To simulate Logging in Server Response
-	window.setTimeout(() => {
-	    this._nav.push(EventListPage);
-	}, 1000);
+	this._api.setUserAuth(this.newUser.email, this.newUser.password)
+	    .subscribe(
+		(data) => {
+		    this._api.setUserID(data);
+		    this._nav.push(EventListPage);
+		},
+		error => alert("Identifiants inconnus chez Reality Game! Demandez au staff de vous inscrire.")
+	    );
     }
 
 }
