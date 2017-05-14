@@ -17,6 +17,8 @@ export class EventListPage {
     public user: string;
     public id_user: string;
     public message: string;
+    public ip_address: string;
+    public port: string;
     
     constructor(
 	private _nav: NavController,
@@ -41,5 +43,9 @@ export class EventListPage {
 
     public checkStats() {
 	this._nav.push(StatsPage, {});
+    }
+
+    public setIpAddress() {
+	this._api.setIpAddress(this.ip_address, this.port);
     }
 }

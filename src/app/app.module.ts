@@ -8,6 +8,7 @@ import { EventListPage } from '../pages/event-list/event-list';
 import { LoginPage } from '../pages/login/login';
 import { ScanPage } from '../pages/scan/scan';
 import { ScanResultPage } from '../pages/scan-result/scan-result';
+import { ScanInsertPage } from '../pages/scan-insert/scan-insert';
 import { StatsPage } from '../pages/stats/stats';
 import { BattleMapPage } from '../pages/battle-map/battle-map';
 
@@ -24,6 +25,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 	LoginPage,
 	ScanPage,
 	ScanResultPage,
+	ScanInsertPage,
 	StatsPage,
 	BattleMapPage
     ],
@@ -39,6 +41,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 	LoginPage,
 	ScanPage,
 	ScanResultPage,
+	ScanInsertPage,
 	StatsPage,
 	BattleMapPage
     ],

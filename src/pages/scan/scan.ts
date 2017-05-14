@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ScanResultPage } from "../scan-result/scan-result.ts";
+import { ScanInsertPage } from "../scan-insert/scan-insert.ts";
 
 import { Api } from '../../providers/api';
 
@@ -49,7 +50,10 @@ export class ScanPage {
 	    this._api.validateGoal(barcodeData)
 		.subscribe(
 		    (data) => {
-			this.goToResult(data);
+			/*if (!data.success)
+			    this.goToResult(data);
+			else*/
+			    this.goToInsert(barcodeData.text);
 		    },
 		    error => console.log(error)
 		);
@@ -65,6 +69,10 @@ export class ScanPage {
 	this._nav.push(ScanResultPage, {
 	    scannedText: barcodeData
 	});
+    }
+
+    private goToInsert(barcode){
+	this._nav.push(ScanInsertPage, { barcode: barcode });
     }
 
     private checkPass(data) {

@@ -23,4 +23,15 @@
       Statistiques temps reel
     </ion-item>	
   </ion-list>
+  
+  <ion-item>
+    <ion-label>IP: </ion-label>
+    <ion-input type="string" [(ngModel)]="ip_address" placeholder="{{ip_address}}" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Port: </ion-label>
+    <ion-input type="string" [(ngModel)]="port" placeholder="{{port}}" ></ion-input>
+  </ion-item>
+  <button (click)="setIpAddress()" ion-button color="secondary" block>Enregistrer coord serveur</button>
+
 </ion-content>

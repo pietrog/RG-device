@@ -60,7 +60,7 @@ export class LoginPage {
 		    this._api.setUserID(data);
 		    this._nav.push(EventListPage);
 		},
-		error => alert("Identifiants inconnus chez Reality Game! Demandez au staff de vous inscrire.")
+		error => alert("Identifiants inconnus chez Reality Game! Demandez au staff de vous inscrire." + error)
 	    );
     }
 
