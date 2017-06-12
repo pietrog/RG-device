@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
- <form (ngSubmit)="login()" [formGroup]="loginFormControl">
+  <form (ngSubmit)="login()" [formGroup]="loginFormControl">
     <ion-list inset>
       <ion-item>
         <ion-label>Email</ion-label>
@@ -21,4 +21,15 @@
       <button type="submit" ion-button color="primary" block>Login</button>
     </ion-list>
   </form>
+
+  <ion-item>
+    <ion-label>IP: </ion-label>
+    <ion-input type="string" [(ngModel)]="ip_address" placeholder="{{ip_address}}" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Port: </ion-label>
+    <ion-input type="string" [(ngModel)]="port" placeholder="{{port}}" ></ion-input>
+  </ion-item>
+  <button (click)="setIpAddress()" ion-button color="secondary" block>Enregistrer coord serveur</button>
+
 </ion-content>

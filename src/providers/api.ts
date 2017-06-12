@@ -25,8 +25,8 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	this.ip_address = '192.168.0.34';
-	this.port = "8100";
+	this.ip_address = '192.168.0.45';
+	this.port = "3000";
 	this.url = `http://${this.ip_address}:${this.port}`;
     }
     
@@ -37,6 +37,7 @@ export class Api {
     public setIpAddress(ip_addr: string, port: string) {
 	this.ip_address = ip_addr;
 	this.port = port;
+	this.url = `http://${this.ip_address}:${this.port}`;
     }
     
     public setUserAuth(email: string, password: string) {

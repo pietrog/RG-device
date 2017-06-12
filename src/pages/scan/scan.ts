@@ -50,12 +50,15 @@ export class ScanPage {
 	    this._api.validateGoal(barcodeData)
 		.subscribe(
 		    (data) => {
-			/*if (!data.success)
+			if (!data.success)
 			    this.goToResult(data);
-			else*/
+			else
 			    this.goToInsert(barcodeData.text);
 		    },
-		    error => console.log(error)
+		    error => {
+			console.log(error);
+			this.goToInsert(barcodeData.text);
+		    }
 		);
 
 	    

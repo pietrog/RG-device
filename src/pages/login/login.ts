@@ -16,6 +16,9 @@ export class LoginPage {
 	password: ''
     };
     public loginFormControl: FormGroup;
+    public ip_address: string;
+    public port: string;
+
 
     constructor(
 	private _nav: NavController,
@@ -64,4 +67,9 @@ export class LoginPage {
 	    );
     }
 
+    public setIpAddress() {
+	this._api.setIpAddress(this.ip_address, this.port);
+    }
+    
+    
 }
