@@ -17,9 +17,11 @@ class RTData
 
 @Injectable()
 export class Api {
-    private userAuth: string;
+    private userName: string;
     private userID: string;
     private userScore: number;
+    private teamName: string;
+    private teamScore: number;
     private _rt_data: RTData;
     
     /*private rt_data_observer = Observable.create((observer) => {
@@ -59,17 +61,20 @@ export class Api {
     
     public setUserAuth(email: string) {
 	//this.userAuth = "Basic " + btoa(`${email}:${password}`);
-	this.userAuth = email;
+	this.userName = email;
 	//this.addHeader("Authorization", this.userAuth);
 	const url = `${this.url}/api/player/idFromName`;
-	return this._http.post(url, JSON.stringify({ data: this.userAuth}), {headers: this.headers})
+	return this._http.post(url, JSON.stringify({ data: this.userName}), {headers: this.headers})
 	    .map(this.extractData)
 	    .catch(this.handleError);
     }
 
-    public setUserID(userID: string) {
-	console.log(userID);
-	this.userID = userID;
+    public setUserDatas(datas) {
+	this.userID = datas.user_id;
+	this.userName = datas.user_name;
+	this.teamName = datas.team_name;
+	this.userScore = datas.user_score;
+	this.teamScore = datas.team_score;
     }
 
     public sendCode(code: string, name: string, nb_points: number) {
@@ -91,7 +96,19 @@ export class Api {
     }
 
     public getUserAuth() {
-	return this.userAuth;
+	return this.userName;
+    }
+
+    public getTeamName() {
+	return this.teamName;
+    }
+
+    public getUserScore(){
+	return this.userScore;
+    }
+
+    public getTeamScore(){
+	return this.teamScore;
     }
 
     public validateGoal(barcodeData: string) {
@@ -106,8 +123,7 @@ export class Api {
 
 	let body = res.json();
 	return body.data || {};
-    }
-
+    }    
 
     private handleError(error: any): Promise<any> {
 	//console.error('an error occured', error);

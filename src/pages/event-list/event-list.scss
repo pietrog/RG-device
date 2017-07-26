@@ -1,2 +1,25 @@
 page-event-list {
+
+.main_page {
+	   background: color($colors, secondary);
+	   color: color($colors, primary);
+	   font-size: 300%;
+}
+
+.user {
+      font-size: 110%;
+}
+
+.team {
+      font-size: 150%;
+}
+
+.scan {
+      display: block;
+
+      width: 100%;
+      background: color($colors, button);
+      color: color($colors, primary);
+}
+
 }

@@ -47,7 +47,7 @@ export class LoginPage {
 
 	let loading = this._loadingController.create({
 	    content: "Connexion...",
-	    duration: 10
+	    duration: 5
 	});
 
 	loading.present();
@@ -64,10 +64,14 @@ export class LoginPage {
 			alert(this.newUser.email + ", tu n'existes pas ! Va demander à tonton Kad de t'inscrire !")
 			return;
 		    }
-		    this._api.setUserID(data);
+		    this._api.setUserDatas(data);
 		    this._nav.push(EventListPage);
 		},
-		error => alert("Problème de connexion au serveur RG. Contacter tonton Kad.")
+		error => {
+		    alert("Problème de connexion au serveur RG. Contacter tonton Kad.");
+		    this._api.setUserDatas({ user_id: 12345, user_name: "PilPoil", user_score: 112, team_name: "Casbaaax", team_score: 2002 });
+		    this._nav.push(EventListPage);
+		}
 	    );
     }
 
