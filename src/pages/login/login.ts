@@ -30,7 +30,6 @@ export class LoginPage {
 	// Create FormControl to validate fields
 	this.loginFormControl = new FormGroup({
 	    email: new FormControl('', [Validators.required]),
-	    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
 	});
     }
 
@@ -55,15 +54,20 @@ export class LoginPage {
 
 	//Take the values from  the form control
 	this.newUser.email = this.loginFormControl.get("email").value.trim();
-	this.newUser.password = this.loginFormControl.get("password").value;
+	//this.newUser.password = this.loginFormControl.get("password").value;
 
-	this._api.setUserAuth(this.newUser.email, this.newUser.password)
+	this._api.setUserAuth(this.newUser.email)
 	    .subscribe(
 		(data) => {
+		    if (data.reason)
+		    {
+			alert(this.newUser.email + ", tu n'existes pas ! Va demander à tonton Kad de t'inscrire !")
+			return;
+		    }
 		    this._api.setUserID(data);
 		    this._nav.push(EventListPage);
 		},
-		error => alert("Identifiants inconnus chez Reality Game! Demandez au staff de vous inscrire." + error)
+		error => alert("Problème de connexion au serveur RG. Contacter tonton Kad.")
 	    );
     }
 

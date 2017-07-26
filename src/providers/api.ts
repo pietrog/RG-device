@@ -4,14 +4,31 @@ import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+class RTData
+{
+    _id: number;
+    email: string;
+    team_id: string;
+    team_name: string;
+    score_player: number;
+    score_team: number;
+    party_name: string;
+};
+
 @Injectable()
 export class Api {
     private userAuth: string;
     private userID: string;
-    //private url = "http://192.168.0.21:3000/device";
-    private url = '';//= "http://192.168.0.34:8100";
+    private userScore: number;
+    private _rt_data: RTData;
+    
+    /*private rt_data_observer = Observable.create((observer) => {
+	
+    });*/
+    
+    private url = '';//= "http://192.168.1.109:8100";
 
-    private ip_address = "";//= "192.168.0.34";
+    private ip_address = "";//= "192.168.1.109";
     private port = ""; //= "8100";
     
     private headers = new Headers(
@@ -25,7 +42,7 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	this.ip_address = '192.168.0.45';
+	this.ip_address = '192.168.0.34';
 	this.port = "3000";
 	this.url = `http://${this.ip_address}:${this.port}`;
     }
@@ -40,7 +57,7 @@ export class Api {
 	this.url = `http://${this.ip_address}:${this.port}`;
     }
     
-    public setUserAuth(email: string, password: string) {
+    public setUserAuth(email: string) {
 	//this.userAuth = "Basic " + btoa(`${email}:${password}`);
 	this.userAuth = email;
 	//this.addHeader("Authorization", this.userAuth);

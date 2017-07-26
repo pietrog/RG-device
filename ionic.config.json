@@ -15,15 +15,15 @@
     "proxies": [
 	{
 	    "path": "/api/device/validateGoal",
-	    "proxyUrl": "http://192.168.0.45:3000/api/device/validateGoal"
+	    "proxyUrl": "http://192.168.0.34:3000/api/device/validateGoal"
 	},
 	{
 	    "path": "/api/player/idFromName",
-	    "proxyUrl": "http://192.168.0.45:3000/api/player/idFromName"
+	    "proxyUrl": "http://192.168.0.34:3000/api/player/idFromName"
 	},
 	{
 	    "path": "/api/goals/create",
-	    "proxyUrl": "http://192.168.0.45:3000/api/goals/create"
+	    "proxyUrl": "http://192.168.0.34:3000/api/goals/create"
 	}
 
     ]
