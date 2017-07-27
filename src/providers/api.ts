@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import * as io from "socket.io-client";
+import { RTPlayer } from './player';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-class RTData
-{
-    _id: number;
-    email: string;
-    team_id: string;
-    team_name: string;
-    score_player: number;
-    score_team: number;
-    party_name: string;
-};
+
 
 @Injectable()
 export class Api {
@@ -22,12 +16,13 @@ export class Api {
     private userScore: number;
     private teamName: string;
     private teamScore: number;
-    private _rt_data: RTData;
+    private otherTeamName: string;
+    private otherTeamScore: number;
+
+    private m_player;
+    private m_player_observer;
     
-    /*private rt_data_observer = Observable.create((observer) => {
-	
-    });*/
-    
+    private _socket;
     private url = '';//= "http://192.168.1.109:8100";
 
     private ip_address = "";//= "192.168.1.109";
@@ -44,9 +39,41 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	this.ip_address = '192.168.0.34';
+	this.ip_address = '192.168.0.45';
 	this.port = "3000";
 	this.url = `http://${this.ip_address}:${this.port}`;
+	this._socket = io(this.url);
+
+	const url = `${this.url}/api/device/idFromName`;
+
+	this.m_player = Observable.create(
+	    (observer) => {
+		;
+		this.m_player_observer = observer;
+		this.getPlayer(this.userName).subscribe((data) => {
+		    console.log(JSON.stringify(data));
+		    observer.next(data);
+		});
+	    });
+	
+	this._socket.on('goal_scanned_answer', (data) => {
+	    this.getPlayer(this.userName)
+		.subscribe((data) => {
+		    this.m_player_observer.next(data);
+		});
+	})
+	
+	this._socket.on('goal_scanned_broadcast', (data) => {
+	    this.getPlayer(this.userName)
+		.subscribe((data) => {
+		    this.m_player_observer.next(data);
+		});
+	})
+	
+    }
+    
+    public getPlayerObservable() {
+	return this.m_player;
     }
     
     public addHeader(headerKey: string, headerContent) {
@@ -59,22 +86,22 @@ export class Api {
 	this.url = `http://${this.ip_address}:${this.port}`;
     }
     
-    public setUserAuth(email: string) {
-	//this.userAuth = "Basic " + btoa(`${email}:${password}`);
-	this.userName = email;
-	//this.addHeader("Authorization", this.userAuth);
-	const url = `${this.url}/api/player/idFromName`;
-	return this._http.post(url, JSON.stringify({ data: this.userName}), {headers: this.headers})
+    getPlayer(name: string): Observable<RTPlayer> {
+	const url = `${this.url}/api/device/idFromName`;
+	let body = { user_name: name };
+	return this._http.post(url, body, {headers: this.headers})
 	    .map(this.extractData)
 	    .catch(this.handleError);
     }
-
+    
     public setUserDatas(datas) {
 	this.userID = datas.user_id;
 	this.userName = datas.user_name;
 	this.teamName = datas.team_name;
 	this.userScore = datas.user_score;
 	this.teamScore = datas.team_score;
+	this.otherTeamScore = datas.other_team_score;
+	this.otherTeamName = datas.other_team_name;
     }
 
     public sendCode(code: string, name: string, nb_points: number) {
@@ -83,14 +110,23 @@ export class Api {
 	    code: code,
 	    number_of_points: nb_points
 	};
-
+	
 	const url = `${this.url}/api/goals/create`;
 	return this._http.post(url, JSON.stringify(goal), {headers: this.headers})
 	    .map(this.extractData)
 	    .catch(this.handleError);
 	
     }
-
+    
+    public doesUserExist(name: string) {
+	const url = `${this.url}/api/device/nameExists`;
+	this.userName = name;
+	let body = { user_name: name };
+	return this._http.post(url, body, {headers: this.headers})
+	    .map(this.extractData)
+	    .catch(this.handleError);
+    }
+    
     public getUserID() {
 	return this.userID;
     }
@@ -118,16 +154,16 @@ export class Api {
 	    .catch(this.handleError);
     }
 
-    
     private extractData(res: Response) {
-
 	let body = res.json();
 	return body.data || {};
     }    
 
     private handleError(error: any): Promise<any> {
-	//console.error('an error occured', error);
+	console.error('an error occured', error);
 	return Promise.reject(error.message || error);
     }
 
+
+    
 }

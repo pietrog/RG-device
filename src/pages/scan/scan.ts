@@ -47,7 +47,7 @@ export class ScanPage {
 	    console.log("Scanned successfully!");
 	    console.log(barcodeData);
 
-	    this._api.validateGoal(barcodeData)
+	    this._api.validateGoal(barcodeData.text)
 		.subscribe(
 		    (data) => {
 			if (!data.success)

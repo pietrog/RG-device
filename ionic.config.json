@@ -1,5 +1,5 @@
 {
-    "name": "QRScanner",
+    "name": "RGGame",
     "app_id": "",
     "v2": true,
     "typescript": true,
@@ -7,24 +7,26 @@
 	"sass",
 	"watch"
     ],
-    "watchPatterns": [
-	"www/**/*",
-	"!www/lib/**/*",
-	"!www/**/*.map"
-    ],
     "proxies": [
 	{
 	    "path": "/api/device/validateGoal",
-	    "proxyUrl": "http://192.168.0.45:3000/api/device/validateGoal"
+	    "proxyUrl": "http://0.0.0.0:3000/api/device/validateGoal"
 	},
 	{
-	    "path": "/api/player/idFromName",
-	    "proxyUrl": "http://192.168.0.45:3000/api/player/idFromName"
+	    "path": "/api/device/idFromName",
+	    "proxyUrl": "http://0.0.0.0:3000/api/device/idFromName"
 	},
 	{
 	    "path": "/api/goals/create",
-	    "proxyUrl": "http://192.168.0.45:3000/api/goals/create"
+	    "proxyUrl": "http://0.0.0.0:3000/api/goals/create"
+	},
+	{
+	    "path": "/socket.io",
+	    "proxyUrl": "http://0.0.0.0:3000/api/goals/create"
+	},
+	{
+	    "path": "/api/device/nameExists",
+	    "proxyUrl": "http://0.0.0.0:3000/api/device/nameExists"
 	}
-
     ]
 }

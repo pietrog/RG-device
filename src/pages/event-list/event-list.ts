@@ -7,6 +7,9 @@ import { StatsPage } from '../stats/stats';
 
 import { Api } from '../../providers/api';
 
+import { RTPlayer } from '../../providers/player';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
     selector: 'page-event-list',
@@ -14,11 +17,7 @@ import { Api } from '../../providers/api';
 })
 export class EventListPage {
 
-    public user: string;
-    public team_name: string;
-    public id_user: string;
-    public user_score: number;
-    public team_score: number;
+    public user: RTPlayer;
     
     public message: string;
     public ip_address: string;
@@ -27,14 +26,17 @@ export class EventListPage {
     constructor(
 	private _nav: NavController,
 	private _api: Api
-    ) { }
+    )
+    {
+	console.log("cstro");
+    }
 
     ionViewDidLoad() {
-	this.user = this._api.getUserAuth();
-	this.team_name = this._api.getTeamName();
-	this.user_score = this._api.getUserScore();
-	this.team_score = this._api.getTeamScore();
-	this.id_user = this._api.getUserID();
+	console.log("viweload");
+	this._api.getPlayerObservable()
+	    .subscribe((pl) => {
+		this.user = pl;
+	    });
     }
 
     public scanGoal() {

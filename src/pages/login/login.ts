@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 import { Api } from '../../providers/api';
 
@@ -18,7 +19,7 @@ export class LoginPage {
     public loginFormControl: FormGroup;
     public ip_address: string;
     public port: string;
-
+    public player;
 
     constructor(
 	private _nav: NavController,
@@ -51,28 +52,19 @@ export class LoginPage {
 	});
 
 	loading.present();
-
+	
 	//Take the values from  the form control
-	this.newUser.email = this.loginFormControl.get("email").value.trim();
-	//this.newUser.password = this.loginFormControl.get("password").value;
+	this.newUser.email = this.loginFormControl.get("email").value.trim();	
 
-	this._api.setUserAuth(this.newUser.email)
-	    .subscribe(
-		(data) => {
-		    if (data.reason)
-		    {
-			alert(this.newUser.email + ", tu n'existes pas ! Va demander à tonton Kad de t'inscrire !")
-			return;
-		    }
-		    this._api.setUserDatas(data);
+	this._api.doesUserExist(this.newUser.email)
+	    .subscribe((data) => {
+		if (data.reason === "success")
 		    this._nav.push(EventListPage);
-		},
-		error => {
-		    alert("Problème de connexion au serveur RG. Contacter tonton Kad.");
-		    this._api.setUserDatas({ user_id: 12345, user_name: "PilPoil", user_score: 112, team_name: "Casbaaax", team_score: 2002 });
-		    this._nav.push(EventListPage);
-		}
-	    );
+		else
+		    alert("Vous devez etre inscrit ");
+
+	    });
+
     }
 
     public setIpAddress() {
