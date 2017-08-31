@@ -40,10 +40,10 @@ export class Api {
 	private _http: Http
     ) {
 	//this.ip_address = '192.168.1.109';
-	this.ip_address = '0.0.0.0';
-	
-	this.port = "3000";
-	this.url = `http://${this.ip_address}:${this.port}`;
+	//this.port = "3000";
+
+	//this.url = `http://${this.ip_address}:${this.port}`;
+	this.url = '';
 	console.log("url server : " + this.url);
 	this._socket = io(this.url);
 
@@ -161,7 +161,8 @@ export class Api {
 
     private extractData(res: Response) {
 	let body = res.json();
-	return body.data || {};
+	console.log("body : " +body.data);
+	return body || {};
     }    
 
     private handleError(error: any): Promise<any> {
