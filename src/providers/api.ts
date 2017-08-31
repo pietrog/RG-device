@@ -23,10 +23,10 @@ export class Api {
     private m_player_observer;
     
     private _socket;
-    private url = '';//= "http://192.168.1.109:8100";
+    private url;
 
-    private ip_address = "";//= "192.168.1.109";
-    private port = ""; //= "8100";
+    private ip_address;
+    private port;
     
     private headers = new Headers(
 	{
@@ -39,9 +39,12 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	this.ip_address = '192.168.0.45';
+	//this.ip_address = '192.168.1.109';
+	this.ip_address = '0.0.0.0';
+	
 	this.port = "3000";
 	this.url = `http://${this.ip_address}:${this.port}`;
+	console.log("url server : " + this.url);
 	this._socket = io(this.url);
 
 	const url = `${this.url}/api/device/idFromName`;
@@ -51,6 +54,7 @@ export class Api {
 		;
 		this.m_player_observer = observer;
 		this.getPlayer(this.userName).subscribe((data) => {
+		    this.setUserDatas(data);
 		    console.log(JSON.stringify(data));
 		    observer.next(data);
 		});
@@ -149,6 +153,7 @@ export class Api {
 
     public validateGoal(barcodeData: string) {
 	const url = `${this.url}/api/device/validateGoal`;
+	this._socket.emit('goal_scanned', { player_id: this.userID, scanned_code: barcodeData});
 	return this._http.post(url, JSON.stringify({ player_id: this.userID, scanned_code: barcodeData}), {headers: this.headers})
 	    .map(this.extractData)
 	    .catch(this.handleError);

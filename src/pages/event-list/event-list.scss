@@ -11,8 +11,21 @@ page-event-list {
 }
 
 .team {
-      font-size: 150%;
+      font-size: 110%;
+      color: #000100;
+      background: #01F3AA;
+      border: 1px solid;
+      border-radius: 25px;     
 }
+
+.other_team {
+      font-size: 110%;
+      color: #FEFEFE;
+      background: #EF5800;
+      border: 1px solid;
+      border-radius: 25px;
+}
+
 
 .scan {
       display: block;

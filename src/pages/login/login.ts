@@ -52,18 +52,21 @@ export class LoginPage {
 	});
 
 	loading.present();
-	
+
 	//Take the values from  the form control
 	this.newUser.email = this.loginFormControl.get("email").value.trim();	
 
 	this._api.doesUserExist(this.newUser.email)
-	    .subscribe((data) => {
-		if (data.reason === "success")
-		    this._nav.push(EventListPage);
-		else
-		    alert("Vous devez etre inscrit ");
-
-	    });
+	    .subscribe(
+		(data) => {
+		    if (data.status === "success")
+			this._nav.push(EventListPage);
+		    else
+			alert("Vous devez etre inscrit ");		    
+		}
+		,
+		(error) => { alert("Erreur de connexion:  "+ error);}
+	    );
 
     }
 
