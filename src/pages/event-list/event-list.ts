@@ -28,15 +28,17 @@ export class EventListPage {
 	private _api: Api
     )
     {
-	console.log("cstro");
     }
 
     ionViewDidLoad() {
-	console.log("viweload");
 	this._api.getPlayerObservable()
 	    .subscribe((pl) => {
+		
 		this.user = pl;
-	    });
+		
+	    },
+		       (error) =>
+		       {});
     }
 
     public scanGoal() {

@@ -22,7 +22,7 @@
 	},
 	{
 	    "path": "/socket.io",
-	    "proxyUrl": "http://0.0.0.0:3000/api/goals/create"
+	    "proxyUrl": "http://0.0.0.0:3000/"
 	},
 	{
 	    "path": "/api/device/nameExists",

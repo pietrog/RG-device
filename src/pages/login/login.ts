@@ -59,8 +59,10 @@ export class LoginPage {
 	this._api.doesUserExist(this.newUser.email)
 	    .subscribe(
 		(data) => {
-		    if (data.status === "success")
+		    console.log("login status: "+data.status);
+		    if (data.status === "success"){			
 			this._nav.push(EventListPage);
+		    }
 		    else
 			alert("Vous devez etre inscrit ");		    
 		}

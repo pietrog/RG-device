@@ -21,12 +21,17 @@ export class Api {
 
     private m_player;
     private m_player_observer;
+
+    private m_score_observable;
+    private m_score_observer;
     
     private _socket;
     private url;
 
     private ip_address;
     private port;
+
+    private last_score: number;
     
     private headers = new Headers(
 	{
@@ -39,28 +44,42 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	//this.ip_address = '192.168.1.109';
-	//this.port = "3000";
+	this.ip_address = '192.168.1.109';
+	//this.ip_address = '192.168.0.45';
+	this.port = "3000";
 
-	//this.url = `http://${this.ip_address}:${this.port}`;
-	this.url = '';
-	console.log("url server : " + this.url);
+	this.url = `http://${this.ip_address}:${this.port}`;
+	//this.url = '';
 	this._socket = io(this.url);
 
 	const url = `${this.url}/api/device/idFromName`;
 
 	this.m_player = Observable.create(
 	    (observer) => {
-		;
 		this.m_player_observer = observer;
-		this.getPlayer(this.userName).subscribe((data) => {
-		    this.setUserDatas(data);
-		    console.log(JSON.stringify(data));
-		    observer.next(data);
-		});
+		this.getPlayer(this.userName).subscribe(
+		    (data) => {
+			this.setUserDatas(data);
+			observer.next(data);
+		    }
+		);
 	    });
+
+	this.m_score_observable = Observable.create(
+	    (observer) => {
+		this.m_score_observer = observer;
+	    });
+
 	
 	this._socket.on('goal_scanned_answer', (data) => {
+	    if (data.status === 'success')
+	    {
+		this.m_score_observer.next("Bon travail, cet objectif vous fait gagner " + data.score_target + ' !!!');
+	    }
+	    else
+	    {
+		this.m_score_observer.next("Dommage, cet objectif ne vous a rien fait gagne...");
+	    }
 	    this.getPlayer(this.userName)
 		.subscribe((data) => {
 		    this.m_player_observer.next(data);
@@ -79,6 +98,10 @@ export class Api {
     public getPlayerObservable() {
 	return this.m_player;
     }
+
+    public getScoreObservable() {
+	return this.m_score_observable;
+    }
     
     public addHeader(headerKey: string, headerContent) {
 	this.headers.append(headerKey, headerContent);
@@ -94,9 +117,19 @@ export class Api {
 	const url = `${this.url}/api/device/idFromName`;
 	let body = { user_name: name };
 	return this._http.post(url, body, {headers: this.headers})
+	    .map(this.extractData2)
+	    .catch(this.handleError);
+    }
+
+    public doesUserExist(name: string) {
+	const url = `${this.url}/api/device/nameExists`;
+	this.userName = name;
+	let body = { user_name: name };
+	return this._http.post(url, body, {headers: this.headers})
 	    .map(this.extractData)
 	    .catch(this.handleError);
     }
+
     
     public setUserDatas(datas) {
 	this.userID = datas.user_id;
@@ -122,14 +155,6 @@ export class Api {
 	
     }
     
-    public doesUserExist(name: string) {
-	const url = `${this.url}/api/device/nameExists`;
-	this.userName = name;
-	let body = { user_name: name };
-	return this._http.post(url, body, {headers: this.headers})
-	    .map(this.extractData)
-	    .catch(this.handleError);
-    }
     
     public getUserID() {
 	return this.userID;
@@ -154,17 +179,20 @@ export class Api {
     public validateGoal(barcodeData: string) {
 	const url = `${this.url}/api/device/validateGoal`;
 	this._socket.emit('goal_scanned', { player_id: this.userID, scanned_code: barcodeData});
-	return this._http.post(url, JSON.stringify({ player_id: this.userID, scanned_code: barcodeData}), {headers: this.headers})
-	    .map(this.extractData)
-	    .catch(this.handleError);
+	
     }
 
     private extractData(res: Response) {
 	let body = res.json();
-	console.log("body : " +body.data);
 	return body || {};
     }    
 
+    private extractData2(res: Response) {
+	let body = res.json();
+	return body.data || {};
+    }    
+
+    
     private handleError(error: any): Promise<any> {
 	console.error('an error occured', error);
 	return Promise.reject(error.message || error);

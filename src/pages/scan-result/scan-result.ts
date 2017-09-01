@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { EventListPage } from "../event-list/event-list";
 
+import { Api } from '../../providers/api';
+
 /*
   Generated class for the ScanResult page.
 
@@ -14,15 +16,26 @@ import { EventListPage } from "../event-list/event-list";
   templateUrl: 'scan-result.html'
 })
 export class ScanResultPage {
+
     public scannedText: string;
 
     constructor(
+	private _api: Api,
 	public _nav: NavController,
 	private _navParams: NavParams) {}
 
     ionViewDidLoad() {
-	this.scannedText = this._navParams.get("scannedText");
+	this._api.getScoreObservable()
+	    .subscribe((pl) => {
+		
+		this.scannedText = pl;
+		
+	    },
+		       (error) =>
+		       {});
+	
 	setTimeout(() => {this._nav.push(EventListPage);}, 6000);
-  }
+    }
 
+    
 }

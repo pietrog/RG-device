@@ -47,21 +47,9 @@ export class ScanPage {
 	    console.log("Scanned successfully!");
 	    console.log(barcodeData);
 
-	    this._api.validateGoal(barcodeData.text)
-		.subscribe(
-		    (data) => {
-			if (!data.success)
-			    this.goToResult(data);
-			else
-			    this.goToInsert(barcodeData.text);
-		    },
-		    error => {
-			console.log(error);
-			this.goToInsert(barcodeData.text);
-		    }
-		);
-
-	    
+	    this._api.validateGoal(barcodeData.text);
+	    this.goToResult("");
+	    //this.goToInsert(barcodeData.text);
 
 	}, (err) => {
 	    console.log(err);
