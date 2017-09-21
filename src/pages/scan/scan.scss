@@ -1,11 +1,30 @@
 page-scan {
-  .Scan{
-    background: #1b1b1b;
-    color: #c7932b;
-  }
 
-  .Scan-button {
-    color: #ffffff;
-    background-color:#c7932b;
-  }
+.main_page {
+	   background-image: url("../assets/rg_3.jpg");	
+	   color: color($colors, primary);
+	   font-size: 200%;
+}
+
+.todo {
+      text-align: center;
+      padding: 2em;
+}
+
+.scan {
+      display: block;
+      width: 70%;
+      font-size: 150%;
+      background: color($colors, button);
+      color: color($colors, primary);
+      padding: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+}
+
+button:hover {
+       color: #bf0006;
+}
+
 }

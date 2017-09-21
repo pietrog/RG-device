@@ -7,14 +7,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="main_page">
+  <div class="logo"></div>
   <form (ngSubmit)="login()" [formGroup]="loginFormControl">
     <ion-list inset>
-      <ion-item>
-        <ion-label>Nom du joueur</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
+      <ion-item class="identifiant">
+        <ion-input type="email" formControlName="email" placeholder="Identifiant"></ion-input>
       </ion-item>
-      <button type="submit" ion-button color="primary" block>Connexion au reseau RG</button>
+      <button type="submit" ion-button class="scan" >Connexion</button>
     </ion-list>
   </form>
 

@@ -1,38 +1,88 @@
 page-event-list {
 
 .main_page {
-	   background: color($colors, secondary);
+	   background-image: url("../assets/rg_3.jpg");	
 	   color: color($colors, primary);
-	   font-size: 300%;
+	   font-size: 200%;
 }
 
 .user {
+      width:60%;
       font-size: 110%;
+      color: color($colors, primary);
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: 2em;
+
+      text-align: center;
+      border-style: solid;
+      border-color: #bf0006;
+      border-width: 6px;
+      padding: 15px;
 }
 
 .team {
       font-size: 110%;
-      color: #000100;
-      background: #01F3AA;
-      border: 1px solid;
-      border-radius: 25px;     
+      color: white;
+      background: transparent;
+
+      width: 100%;
+      margin-right: auto;
+      
+      border-left-style: solid;
+      border-color: #bf0006;
+      border-width: 6px;
+      padding-left: 15px;
+
 }
 
 .other_team {
-      font-size: 110%;
-      color: #FEFEFE;
-      background: #EF5800;
-      border: 1px solid;
-      border-radius: 25px;
+      font-size: 100%;
+      background: transparent;
+      width: 100%;
+      text-align: right;      
+
+      border-right-style: solid;
+      border-color: green;
+      border-width: 6px;
+      padding-right: 15px;
+
 }
+
+.name {
+      font-size: 100%;
+      color: #FEFEFE;
+      background: transparent;
+      display: block;
+      font-weight: bold;
+      font-size: 150%;
+
+}
+
+.score {
+      font-size: 80%;
+      color: white;
+      display: block;
+
+      font-weight: lighter;
+      font-size: 100%;
+}
+
 
 
 .scan {
       display: block;
-
-      width: 100%;
+      width: 70%;
       background: color($colors, button);
       color: color($colors, primary);
+      padding: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5em;
+}
+
+button:hover {
+       color: #bf0006;;
 }
 
 }

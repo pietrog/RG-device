@@ -45,7 +45,7 @@ export class Api {
 	private _http: Http
     ) {
 	this.ip_address = '192.168.1.109';
-	//this.ip_address = '192.168.0.45';
+	//this.ip_address = '192.168.0.21';
 	this.port = "3000";
 
 	this.url = `http://${this.ip_address}:${this.port}`;
