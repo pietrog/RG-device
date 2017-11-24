@@ -23,8 +23,8 @@ export class ScanPage {
 	private _api: Api,
 	private _nav: NavController,
 	private _navParams: NavParams,
-	private _barcodeScanner: BarcodeScanner) {
-    }
+	private _barcodeScanner: BarcodeScanner
+    ) {}
 
     ionViewDidLoad() {
 	//this.eventId = this._navParams.get('eventId');
@@ -66,7 +66,6 @@ export class ScanPage {
     public goToHome() {
 	this._nav.push(EventListPage);
     }
-
     
     private goToInsert(barcode){
 	this._nav.push(ScanInsertPage, { barcode: barcode });
@@ -74,4 +73,5 @@ export class ScanPage {
 
     private checkPass(data) {
     }
+    
 }

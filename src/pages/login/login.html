@@ -3,9 +3,10 @@
   <form (ngSubmit)="login()" [formGroup]="loginFormControl">
     <ion-list inset>
       <ion-item class="identifiant">
-        <ion-input type="email" formControlName="email" placeholder="Identifiant"></ion-input>
+	<ion-label color="primary" floating>Identifiant</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
-      <button type="submit" ion-button class="scan" >Connexion</button>
+      <button type="submit" ion-button class="scan" round>Connexion</button>
     </ion-list>
   </form>
 
