@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ScanResultPage } from "../scan-result/scan-result.ts";
 import { ScanInsertPage } from "../scan-insert/scan-insert.ts";
+import { EventListPage } from '../event-list/event-list';
 
 import { Api } from '../../providers/api';
 
@@ -62,6 +63,11 @@ export class ScanPage {
 	});
     }
 
+    public goToHome() {
+	this._nav.push(EventListPage);
+    }
+
+    
     private goToInsert(barcode){
 	this._nav.push(ScanInsertPage, { barcode: barcode });
     }

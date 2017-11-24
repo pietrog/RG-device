@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { ScanPage } from "../scan/scan";
-import { BattleMapPage } from '../battle-map/battle-map';
-import { StatsPage } from '../stats/stats';
+import { LoginPage } from '../login/login';
 
 import { Api } from '../../providers/api';
 
@@ -44,6 +43,11 @@ export class EventListPage {
     public scanGoal() {
 	this._nav.push(ScanPage, {});
     }
+
+    public goToLogin() {
+	this._nav.push(LoginPage);
+    }
+
 
     public setIpAddress() {
 	this._api.setIpAddress(this.ip_address, this.port);

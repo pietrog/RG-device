@@ -9,8 +9,6 @@ import { LoginPage } from '../pages/login/login';
 import { ScanPage } from '../pages/scan/scan';
 import { ScanResultPage } from '../pages/scan-result/scan-result';
 import { ScanInsertPage } from '../pages/scan-insert/scan-insert';
-import { StatsPage } from '../pages/stats/stats';
-import { BattleMapPage } from '../pages/battle-map/battle-map';
 
 import { Api } from '../providers/api';
 import { User } from '../providers/user';
@@ -25,9 +23,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 	LoginPage,
 	ScanPage,
 	ScanResultPage,
-	ScanInsertPage,
-	StatsPage,
-	BattleMapPage
+	ScanInsertPage
     ],
     imports: [
 	BrowserModule,
@@ -41,9 +37,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 	LoginPage,
 	ScanPage,
 	ScanResultPage,
-	ScanInsertPage,
-	StatsPage,
-	BattleMapPage
+	ScanInsertPage
     ],
     providers: [
 	{ provide: ErrorHandler, useClass: IonicErrorHandler },

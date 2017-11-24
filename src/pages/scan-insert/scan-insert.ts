@@ -60,6 +60,10 @@ export class ScanInsertPage {
 	    );
 
     }
+
+    public goToHome() {
+	this._nav.push(EventListPage);
+    }
     
     ionViewDidLoad() {
 	this.barcode = this._navParams.get("barcode");

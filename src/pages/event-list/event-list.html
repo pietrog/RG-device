@@ -1,13 +1,6 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Menu</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding class="main_page">
+  <button ion-button icon-only color="danger" (click)="goToLogin()"><ion-icon name="exit"></ion-icon></button>
+  
   <div *ngIf="user">
 
     <div class="user">

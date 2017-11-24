@@ -1,14 +1,5 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Creation d'objectif</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-
 <ion-content padding>
+  <button ion-button icon-only color="danger" (click)="goToHome()"><ion-icon name="home"></ion-icon></button>
   <form (ngSubmit)="sendCode()" [formGroup]="sendCodeFormControl">
     <ion-list inset>
       <ion-item>
