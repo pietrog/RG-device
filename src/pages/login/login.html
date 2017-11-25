@@ -1,5 +1,4 @@
-<ion-content padding class="main_page">
-  <div class="logo"></div>
+<ion-content class="main_page">
   <form (ngSubmit)="login()" [formGroup]="loginFormControl">
     <ion-list inset>
       <ion-item class="identifiant">
@@ -9,5 +8,13 @@
       <button type="submit" ion-button class="scan" round>Connexion</button>
     </ion-list>
   </form>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col><div class="logo" ></div></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

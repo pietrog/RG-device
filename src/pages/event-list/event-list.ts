@@ -68,7 +68,8 @@ export class EventListPage {
 	this.buttonText = "Loading..";
 	this.loading = true;
 	
-	this._barcodeScanner.scan().then((barcodeData) => {
+	this._barcodeScanner.scan(
+	    {showTorchButton: true}).then((barcodeData) => {
 	    if (barcodeData.cancelled) {
 		console.log("User cancelled the action!");
 		this.buttonText = "Scan";

@@ -1,27 +1,31 @@
+<ion-header >
+  <button ion-button icon-only small color="danger" (click)="goToLogin()"><ion-icon name="exit"></ion-icon></button>
+</ion-header>
+
 <ion-content padding class="main_page">
-  <button ion-button icon-only color="danger" (click)="goToLogin()"><ion-icon name="exit"></ion-icon></button>
-  
   <div *ngIf="user">
 
-    <div class="user">
+    <div *ngIf="user" class="user">
       <div class="name" text-uppercase>{{user.user_name}}</div>
       <div class="score">{{user.user_score}}</div>
     </div>
     
     <div class="team">
       <div class="name" text-uppercase>{{user.team_name}}</div>
-      <div class="score">{{user.team_score}}</div>
+      <div class="score">{{user.team_score}} pts</div>
     </div>
     
     <div class="other_team">
 
       <div class="name" text-uppercase>{{user.other_team_name}}</div>
-      <div class="score">{{user.other_team_score}}</div>
+      <div class="score">{{user.other_team_score}} pts</div>
     </div>
   </div>
 
   
-  <button ion-button large round class="scan" (click)="scanQR()">Acquerir un objectif</button>
-  
 </ion-content>
+
+<ion-footer>
+  <button ion-button  class="scan" (click)="scanQR()"><span class="sp">Acquerir un objectif</span></button>
+</ion-footer>
 

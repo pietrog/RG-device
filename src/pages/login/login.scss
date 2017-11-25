@@ -1,67 +1,70 @@
 page-login {
 
 
-.main_page {
+    .main_page {
+	background-image: url("../assets/rg_1.jpg") ;
+	background-size: 100%;
+	color: color($colors, primary);
+	font-size: 300%;
+    }
 
-	   background-image: url("../assets/rg_1.jpg");	
-	   color: color($colors, primary);
-	   font-size: 300%;
-}
+    .user {
+	display: block;
+	font-size: 110%;
+	color: color($colors, rg-primary);
+    }
 
-.user {
-      font-size: 110%;
-      color: color($colors, rg-primary);
-}
+    .team {
+	font-size: 110%;
+	color: #000100;
+	background: #01F3AA;
+	border: 1px solid;
+	border-radius: 25px;     
+    }
 
-.team {
-      font-size: 110%;
-      color: #000100;
-      background: #01F3AA;
-      border: 1px solid;
-      border-radius: 25px;     
-}
-
-.other_team {
-      font-size: 110%;
-      color: #FEFEFE;
-      background: #EF5800;
-      border: 1px solid;
-      border-radius: 25px;
-}
+    .other_team {
+	font-size: 110%;
+	color: #FEFEFE;
+	background: #EF5800;
+	border: 1px solid;
+	border-radius: 25px;
+    }
 
 
-.scan {
-      display: block;
-      width: 60%;
-      background: color($colors, button);
-      color: color($colors, primary);
-      margin: auto;
-      padding: 2em;
-}
+    .scan {
+	display: block;
+	width: 60%;
+	background: color($colors, button);
+	color: color($colors, primary);
+	margin: auto;
+	padding: 2em;
+    }
 
-.logo {
-      
-      background-image: url("../assets/icon.png");
-      background-size: 100%;
-      background-repeat: no-repeat;
-      margin: auto;
-      width: 30%;
-      padding: 4em;;
-}
+    .logo {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	background-image: url("../assets/icon.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 2em;
+    }
 
-.identifiant {
-     display: block;
-     width: 60%;
-     background-color: transparent;
-     text-align: center;
-     margin: auto;
-     padding: 1em;
-     color: white;
-}
+    .identifiant {
+	display: block;
+	width: 60%;
+	background-color: transparent;
+	text-align: center;
+	margin: auto;
+	padding: 1em;
+	color: white;
+    }
 
-button:hover {
-       color: #bf0006;;
-}
+    button:hover {
+	color: grey;
+    }
 
 
 }
