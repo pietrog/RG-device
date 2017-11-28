@@ -45,12 +45,12 @@ export class Api {
 	private _http: Http
     ) {
 	//this.ip_address = '192.168.1.109'; //ip address rg camp
-	//this.ip_address = '192.168.0.21';
-	this.ip_address = '0.0.0.0';
+	this.ip_address = '192.168.0.34';
+	//this.ip_address = '0.0.0.0';
 	this.port = "3000";
 
-	//this.url = `http://${this.ip_address}:${this.port}`;
-	this.url = '';
+	this.url = `http://${this.ip_address}:${this.port}`;
+	//this.url = ''; //needed when server or run debug
 	this._socket = io(this.url);
 
 	const url = `${this.url}/api/device/idFromName`;

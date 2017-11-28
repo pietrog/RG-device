@@ -3,12 +3,13 @@
 help="usage: build_app [-b|--build release|debug] [-A|--apk-name] [--alias-name] [--key-name] [-k|--gen-key]\n
 \t-b, --build\t build the app in release or debug mode (ex: --build --debug or --build --release)\n
 \t-k, --gen-key\t generate security key via RSA algorithm\n
-\t--key-name\t nom de la clef de securité (ex: --key-name \"key.jds\"\n
-\t--alias-name\t nom de l'alias de la clef de securité (ex: --alias-name \"key-alias\"\n
-\t--apk-name\t nom de l'apk à signer (ex: --apk-name \"test.apk\"\n
 \t-s|--sign\t signe l'apk
 ";
-#ionic build android --prod --release
+
+aliasname="rg-alias"
+apkname="rg-stats.apk"
+keyname="rg-security-key.jks"
+
 if [ $# -eq 0 ]
 then
     echo $help;
@@ -27,18 +28,6 @@ else
 		echo "$help";;
 	    -k | --gen-key )	      
 		genkey=true;
-		shift;;
-	    --key-name )
-		keyname="$2"
-		shift;
-		shift;;
-	    --alias-name )
-		aliasname=$2;
-		shift;
-		shift;;
-	    -A | --apk-name )
-		apkname="$2";
-		shift;
 		shift;;
 	    -s | --sign )
 		signapk=true;
@@ -61,7 +50,7 @@ then
     fi
 
     echo "Generation de la clef de sécurité";
-    keytool -genkey -v -keystore $keyname -keyalg RSA -keysize 2048 -validity 10000 -alias $aliasname
+    keytool -genkey -v -keystore "$keyname" -keyalg RSA -keysize 2048 -validity 10000 -alias "$aliasname"
     echo "Clef de sécurité générée";
 fi
 
@@ -104,4 +93,5 @@ then
     fi
     echo "Signature de l'apk";
     jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keyname "./out/$apkname" $aliasname
+    zipalign -v 4 "./out/$apkname" "rg.apk"
 fi

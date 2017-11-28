@@ -3,9 +3,9 @@ import { NavController } from 'ionic-angular';
 
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
-import { ScanPage } from "../scan/scan";
 import { LoginPage } from '../login/login';
 import { ScanResultPage } from "../scan-result/scan-result.ts";
+import { ScanInsertPage } from "../scan-insert/scan-insert.ts";
 
 import { Api } from '../../providers/api';
 
@@ -56,10 +56,6 @@ export class EventListPage {
 	    );
     }
 
-    public scanGoal() {
-	this._nav.push(ScanPage, {});
-    }
-
     public goToLogin() {
 	this._nav.push(LoginPage);
     }
@@ -67,27 +63,34 @@ export class EventListPage {
     public scanQR() {
 	this.buttonText = "Loading..";
 	this.loading = true;
-	
+
+
+
 	this._barcodeScanner.scan(
 	    {showTorchButton: true}).then((barcodeData) => {
-	    if (barcodeData.cancelled) {
-		console.log("User cancelled the action!");
-		this.buttonText = "Scan";
-		this.loading = false;
-		return false;
-	    }
-	    console.log("Scanned successfully!");
-	    console.log(barcodeData);
+		if (barcodeData.cancelled) {
+		    console.log("User cancelled the action!");
+		    this.buttonText = "Scan";
+		    this.loading = false;
+		    return false;
+		}
+		console.log("Scanned successfully!");
+		console.log(barcodeData);
 
-	    this._api.validateGoal(barcodeData.text);
-	    this._nav.push(ScanResultPage, {
-		scannedText: barcodeData
+		this._api.validateGoal(barcodeData.text);
+		this._nav.push(ScanResultPage, {
+		    scannedText: barcodeData
+		});
+		//this.goToInsert(barcodeData.text);
+		
+		
+	    }, (err) => {
+		console.log(err);
 	    });
-	    //this.goToInsert(barcodeData.text);
-	    
-	}, (err) => {
-	    console.log(err);
-	});
+    }
+
+    private goToInsert(barcode){
+	this._nav.push(ScanInsertPage, { barcode: barcode });
     }
 
 
