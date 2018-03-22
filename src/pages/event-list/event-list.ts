@@ -75,12 +75,9 @@ export class EventListPage {
 		    return false;
 		}
 		console.log("Scanned successfully!");
-		console.log(barcodeData);
 
 		this._api.validateGoal(barcodeData.text);
-		this._nav.push(ScanResultPage, {
-		    scannedText: barcodeData
-		});
+		this._nav.push(ScanResultPage, { barcode: barcodeData});
 		//this.goToInsert(barcodeData.text);
 		
 		
@@ -88,11 +85,6 @@ export class EventListPage {
 		console.log(err);
 	    });
     }
-
-    private goToInsert(barcode){
-	this._nav.push(ScanInsertPage, { barcode: barcode });
-    }
-
 
     public setIpAddress() {
 	this._api.setIpAddress(this.ip_address, this.port);

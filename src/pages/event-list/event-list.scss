@@ -1,94 +1,116 @@
 page-event-list {
 
-.main_page {
-	   background-image: url("../assets/rg_3.jpg");
-	   background-size: 100%;
-	   color: color($colors, primary);
-	   font-size: 200%;
-}
+    .main_page {
+	background-image: url("../assets/rg_3.jpg");
+	background-size: 100%;
+	color: color($colors, primary);
+	font-family: font_light;
+	font-size: 200%;
+    }
+    
+    .user {
+	width:80%;
+	color: color($colors, primary);
+	margin: 0.2em auto 0.1em auto;
+	padding: 3px;
+	text-align: center;
+	border: 3px solid rgba(191, 0, 6, 0.5);
+    }
 
-.user {
-      width:80%;
+    .role {
+	color: white;
+	background: transparent;
+	font-family: font_lowplus;
+	height: 50%;
+	width: 100%;
 
-      color: color($colors, primary);
-      margin: 1em auto 1em auto;
+	font-weight: bold;
+	font-size: 100%;
+    }
 
+    .name {
+	color: white;
+	background: transparent;
+	font-size: 100%;
+	font-family: font_lowplus_italic;
+    }
 
-      text-align: center;
-      border-style: solid;
-      border-color: #bf0006;
-      border-width: 4px;
-}
+    
+    .score {
+	color: rgba(102, 255, 51, 0.7);
+	font-weight: lighter;
+	font-size: 100%;
 
-.name {
-      color: #FEFEFE;
-      background: transparent;
-
-      height: 50%;
-      width: 100%;
-
-      font-weight: bold;
-      font-size: 100%;
-}
-
-.score {
-      color: white;
-      font-weight: lighter;
-      font-size: 100%;
-
-      height: 50%;
-      width: 100%;
-}
-
-
-.team {
-
-      color: white;
-
-      width: 100%;
-      margin-right: auto;
-      margin-top: 65px;
-      
-      border-left-style: solid;
-      border-color: #bf0006;
-      border-width: 6px;
-      padding-left: 15px;
-
-}
-
-.other_team {
-      font-size: 100%;
-      width: 100%;
-      text-align: right;      
-
-      margin-top: 15px;
-      border-right-style: solid;
-      border-color: green;
-      border-width: 6px;
-      padding-right: 15px;
-
-}
+	height: 50%;
+	width: 100%;
+    }
 
 
-.scan {
-      width: 40%;
-      background: color($colors, button);
-      color: color($colors, primary);
-      display: block;	    
-      margin: auto;
-      font-size: 110%;
-      font-weight: bold;
-}
+    .team {
 
-button:hover {
-    color: grey;
-}
+	color: white;
+
+	width: 100%;
+	margin-right: auto;
+	margin-top: 1.5em;
+
+	background: linear-gradient(to right, rgba(180, 180, 180, 0.6), rgba(210, 210, 210, 0));
+	
+	border-left-style: solid;
+	border-color: #bf0006;
+	border-width: 6px;
+	padding-left: 15px;
+
+    }
+
+    .other_team {
+
+	width: 100%;
+	text-align: right;      
+
+	background: linear-gradient(to left, rgba(180, 180, 180, 0.6), rgba(210, 210, 210, 0));
+	
+	margin-top: 0.5em;
+	border-right-style: solid;
+	border-color: blue;
+	border-width: 6px;
+	padding-right: 15px;
+
+    }
+
+    .scan
+    {
+	color: black;
+	background-color: rgba(0, 191, 255, 0.8);
+	border: none;
+	font-size: 50%;
+	display: block;
+	margin: auto;
+	margin-top: 3em;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	width: 50%;	
+	min-width: 90px;
+	max-width: 150px;
+	
+    }
+
+    
+    button:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	color: white;
+	cursor: pointer;
+	
+    }
+
+
 
 }
 
 .sp {
     display: inline-block;
-    font-size: 60%;
+    font-size: 1.3em;
     font-style: bold;
 }
 

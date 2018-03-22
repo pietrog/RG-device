@@ -6,7 +6,8 @@
   <div *ngIf="user">
 
     <div *ngIf="user" class="user">
-      <div class="name" text-uppercase>{{user.user_name}}</div>
+      <div class="role" text-uppercase>{{user.user_role}}</div>
+      <div class="name" >{{user.user_name}} </div>
       <div class="score">{{user.user_score}}</div>
     </div>
     
@@ -22,7 +23,7 @@
     </div>
   </div>
 
-  <button ion-button  class="scan" (click)="scanQR()"><span class="sp">Acquerir un objectif</span></button>
+  <button ion-button  class="scan" (click)="scanQR()"><span class="sp">Acquisition</span></button>
 </ion-content>
 
 

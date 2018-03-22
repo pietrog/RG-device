@@ -76,11 +76,17 @@ export class Api {
 	this._socket.on('goal_scanned_answer', (data) => {
 	    if (data.status === 'success')
 	    {
-		this.m_score_observer.next("Bon travail, cet objectif vous fait gagner " + data.score_target + ' !!!');
+		if (data.score_target > 0)
+		{
+		    this.m_score_observer.next("Bien joue, cet objectif vous rapporte " + data.score_target + ' points !');
+		}
+		else
+		    this.m_score_observer.next(data.score_target + " te sont enleves ainsi qu'a ton equipe !");
+
 	    }
 	    else
 	    {
-		this.m_score_observer.next("Dommage, cet objectif ne vous a rien fait gagne...");
+		this.m_score_observer.next("Objectif non valide ou deja valide");
 	    }
 	    this.getPlayer(this.userName)
 		.subscribe((data) => {
