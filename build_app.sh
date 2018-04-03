@@ -64,7 +64,7 @@ then
     fi
 
     echo "Génération de l'apk $apkname";    
-    ionic build android --prod $mode;
+    ionic cordova build android --device --prod $mode;
 
     if [ ! -d "out" ]
     then
@@ -79,7 +79,7 @@ then
 	apkext="debug.apk";
     fi
 	
-    mv "platforms/android/build/outputs/apk/android-$apkext" "./out/$apkname"
+    mv "platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk" "./out/$apkname"
 fi
 
 

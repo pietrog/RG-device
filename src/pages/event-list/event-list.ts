@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { BarcodeScanner } from "@ionic-native/barcode-scanner";
+import { QRScanner, QRScannerStatus } from "@ionic-native/qr-scanner";
 
 import { LoginPage } from '../login/login';
 import { ScanResultPage } from "../scan-result/scan-result.ts";
 import { ScanInsertPage } from "../scan-insert/scan-insert.ts";
+import { ScanPage } from '../scan/scan';
 
 import { Api } from '../../providers/api';
-
 import { RTPlayer } from '../../providers/player';
 import { Observable } from 'rxjs/Observable';
 
@@ -37,7 +37,7 @@ export class EventListPage {
     constructor(
 	private _nav: NavController,
 	private _api: Api,
-	private _barcodeScanner: BarcodeScanner
+	private _qrScanner: QRScanner
     )
     {
     }
@@ -64,27 +64,55 @@ export class EventListPage {
 	this.buttonText = "Loading..";
 	this.loading = true;
 
+	this._nav.push(ScanPage);
+	
 
 
-	this._barcodeScanner.scan(
-	    {showTorchButton: true}).then((barcodeData) => {
-		if (barcodeData.cancelled) {
-		    console.log("User cancelled the action!");
-		    this.buttonText = "Scan";
-		    this.loading = false;
-		    return false;
+	/*this._qrScanner.scan().subscribe((code: string) => {
+
+	    alert("scanned: " + code);
+	    console.log("OKKK !! : " + code);
+	    //this._qrScanner.show();
+	    this._api.validateGoal(code);
+	    this._nav.push(ScanResultPage, { barcode: code});
+
+	});*/
+
+	/*this._qrScanner.show().then((data: QRScannerStatus) => {
+	    alert('camera is showwwing !! ');
+	});*/
+
+	/*this._qrScanner.prepare()
+	    .then((status: QRScannerStatus) => {
+		if (status.authorized) {
+		    this._qrScanner.scan().subscribe((code: string) => {
+			/*if (err)
+			{
+			    console.log("error !! : " + err);
+			}
+			else
+			{
+			    console.log("OKKK !! : " + code);
+			    this._qrScanner.show();
+			    this._api.validateGoal(code);
+			    this._nav.push(ScanResultPage, { barcode: code});
+
+			//}
+		    });
+		    
 		}
-		console.log("Scanned successfully!");
+		else if (status.denied)
+		{
+		    console.log("c la merde");
+		}
+		else
+		{
+		    console.log("on sait pas");
+		}
+		
+	    });*/
 
-		this._api.validateGoal(barcodeData.text);
-		this._nav.push(ScanResultPage, { barcode: barcodeData});
-		//this.goToInsert(barcodeData.text);
-		
-		
-	    }, (err) => {
-		console.log(err);
-	    });
-    }
+    }		    
 
     public setIpAddress() {
 	this._api.setIpAddress(this.ip_address, this.port);

@@ -46,8 +46,9 @@ export class Api {
     ) {
 	//this.ip_address = '192.168.1.109'; //ip address rg camp
 	//this.ip_address = '192.168.0.21';
+	this.ip_address = '192.168.0.45';
 	//this.ip_address = '10.0.0.7';
-	this.ip_address = '0.0.0.0';
+	//this.ip_address = '0.0.0.0';
 	this.port = "3000";
 
 	//this.url = `http://${this.ip_address}:${this.port}`;
@@ -182,6 +183,10 @@ export class Api {
 
     public getTeamScore(){
 	return this.teamScore;
+    }
+
+    public getServerUrl() {
+	return this.url;
     }
 
     public validateGoal(barcodeData: string) {

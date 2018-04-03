@@ -8,12 +8,14 @@ import { EventListPage } from '../pages/event-list/event-list';
 import { LoginPage } from '../pages/login/login';
 import { ScanResultPage } from '../pages/scan-result/scan-result';
 import { ScanInsertPage } from '../pages/scan-insert/scan-insert';
+import { ScanPage } from '../pages/scan/scan';
 
 import { Api } from '../providers/api';
 import { User } from '../providers/user';
 import { StatusBar } from "@ionic-native/status-bar";
-import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+import { QRScanner, QRScannerStatus } from "@ionic-native/qr-scanner";
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,8 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 	EventListPage,
 	LoginPage,
 	ScanResultPage,
-	ScanInsertPage
+	ScanInsertPage,
+	ScanPage
     ],
     imports: [
 	BrowserModule,
@@ -34,14 +37,16 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 	EventListPage,
 	LoginPage,
 	ScanResultPage,
-	ScanInsertPage
+	ScanInsertPage,
+	ScanPage
     ],
     providers: [
 	{ provide: ErrorHandler, useClass: IonicErrorHandler },
 	Api,
 	User,
 	StatusBar,
-	BarcodeScanner,
+	AndroidPermissions,
+	QRScanner,
 	AndroidFullScreen
     ]
 })

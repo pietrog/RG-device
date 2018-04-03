@@ -54,20 +54,32 @@ export class LoginPage {
 	loading.present();
 
 	//Take the values from  the form control
-	this.newUser.email = this.loginFormControl.get("email").value.trim();	
+	this.newUser.email = this.loginFormControl.get("email").value.trim();
 
 	this._api.doesUserExist(this.newUser.email)
 	    .subscribe(
 		(data) => {
-		    console.log("login status: "+data.status);
-		    if (data.status === "success"){			
+
+		    if (!data)
+		    {
+			alert("Impossible de se connecter au serveur ("+this._api.getServerUrl() +"). Contactez le personnel RG.");			
+		    }
+		    else if (data.status != "success")
+		    {
+			alert("Vous devez etre inscrit ");
+		    }
+		    else if (data.status === "success"){
 			this._nav.push(EventListPage);
 		    }
 		    else
-			alert("Vous devez etre inscrit ");		    
+		    {
+			alert("Impossible de se connecter au serveur ("+this._api.getServerUrl() +"). Contactez le personnel RG.");			
+		    }
 		}
 		,
-		(error) => { alert("Erreur de connexion:  "+ error);}
+		(error) => {
+		    alert("Impossible de se connecter au serveur ("+this._api.getServerUrl() +"). Contactez le personnel RG.");			
+		}
 	    );
 
     }

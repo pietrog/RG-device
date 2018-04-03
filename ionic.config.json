@@ -1,32 +1,34 @@
 {
-    "name": "RGScoring",
-    "app_id": "",
-    "v2": true,
-    "typescript": true,
-    "gulpStartupTasks": [
-	"sass",
-	"watch"
-    ],
-    "proxies": [
-	{
-	    "path": "/api/device/validateGoal",
-	    "proxyUrl": "http://0.0.0.0:3000/api/device/validateGoal"
-	},
-	{
-	    "path": "/api/device/idFromName",
-	    "proxyUrl": "http://0.0.0.0:3000/api/device/idFromName"
-	},
-	{
-	    "path": "/api/goals/create",
-	    "proxyUrl": "http://0.0.0.0:3000/api/goals/create"
-	},
-	{
-	    "path": "/socket.io",
-	    "proxyUrl": "http://0.0.0.0:3000/"
-	},
-	{
-	    "path": "/api/device/nameExists",
-	    "proxyUrl": "http://0.0.0.0:3000/api/device/nameExists"
-	}
-    ]
+  "name": "RGScoring",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "proxies": [
+    {
+      "path": "/api/device/validateGoal",
+      "proxyUrl": "http://0.0.0.0:3000/api/device/validateGoal"
+    },
+    {
+      "path": "/api/device/idFromName",
+      "proxyUrl": "http://0.0.0.0:3000/api/device/idFromName"
+    },
+    {
+      "path": "/api/goals/create",
+      "proxyUrl": "http://0.0.0.0:3000/api/goals/create"
+    },
+    {
+      "path": "/socket.io",
+      "proxyUrl": "http://0.0.0.0:3000/"
+    },
+    {
+      "path": "/api/device/nameExists",
+      "proxyUrl": "http://0.0.0.0:3000/api/device/nameExists"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }

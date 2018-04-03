@@ -2,13 +2,13 @@
   <button ion-button icon-only small color="danger" (click)="goToLogin()"><ion-icon name="exit"></ion-icon></button>
 </ion-header>
 
-<ion-content padding class="main_page">
+<ion-content  padding class="main_page">
   <div *ngIf="user">
 
     <div *ngIf="user" class="user">
+      <div class="party" text-uppercase>{{user.party_name}}</div>
       <div class="role" text-uppercase>{{user.user_role}}</div>
-      <div class="name" >{{user.user_name}} </div>
-      <div class="score">{{user.user_score}}</div>
+      <div class="score">{{user.user_score}} pts</div>
     </div>
     
     <div class="team">

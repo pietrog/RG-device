@@ -18,6 +18,7 @@ import { Api } from '../../providers/api';
 export class ScanResultPage {
 
     public scannedText: string;
+    public barcode;
 
     constructor(
 	private _api: Api,
@@ -29,6 +30,7 @@ export class ScanResultPage {
 	    .subscribe((pl) => {
 		
 		this.scannedText = pl;
+		this.barcode = this._navParams.get('barcode');
 		
 	    },
 		       (error) =>

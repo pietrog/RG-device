@@ -1,20 +1,19 @@
-<ion-content class="main_page">
-  <form (ngSubmit)="login()" [formGroup]="loginFormControl">
-    <ion-list inset>
-      <ion-item class="identifiant">
-	<ion-label color="primary" floating>Identifiant</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
-      </ion-item>
-      <button type="submit" ion-button class="scan" round>Connexion</button>
-    </ion-list>
-  </form>
+<ion-content center text-center class="main_page">
+  
+  <div class="login_div">
+    <form  (ngSubmit)="login()" [formGroup]="loginFormControl" >
+      <ion-list inset>
+	<ion-item class="identifiant">
+	  <ion-label text-center floating>Nom du joueur</ion-label>
+          <ion-input text-center type="email" formControlName="email"></ion-input>
+	</ion-item>
+	<button type="submit" ion-button class="login_button" >Connexion</button>
+      </ion-list>
+    </form>
+  </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col><div class="logo" ></div></ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
-
+  <div class="login_logo">
+    <img src="assets/logo.png">
+  </div>
+       
 </ion-content>
