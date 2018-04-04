@@ -21,7 +21,10 @@ export class MyApp {
 	    this._statusBar.styleDefault();
 	    this.androidFullScreen.isImmersiveModeSupported()
 		.then(() => this.androidFullScreen.immersiveMode())
-		.catch((error: any) => console.log(error));
+		.catch((error: any) => {
+		    console.log(error);
+		    alert("Problème pendant le passage au mode immersif: "+error);
+		});
 	});
     }
 }

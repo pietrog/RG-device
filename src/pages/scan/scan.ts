@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Api } from '../../providers/api';
+
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+
 
 import { Platform } from 'ionic-angular';
 
@@ -18,6 +21,7 @@ export class ScanPage {
     constructor(public navCtrl: NavController,
 		public androidPermissions: AndroidPermissions,
 		private platform: Platform,
+		private _api: Api,
 		public qrScanner: QRScanner) {
         
         this.qrscanner();
@@ -60,11 +64,11 @@ export class ScanPage {
 		    // start scanning
 		    let scanSub = this.qrScanner.scan().subscribe((text: string) => {
 			console.log('Scanned something', text);
+			this._api.validateGoal(code);
 			this.qrScanner.hide(); // hide camera preview
 			scanSub.unsubscribe(); // stop scanning
 			this.qrScanner.disableLight();
 			this.navCtrl.pop();
-
 		    });
 
 		    this.qrScanner.resumePreview();
@@ -73,6 +77,7 @@ export class ScanPage {
 		    this.qrScanner.show()
 			.then((data : QRScannerStatus)=> { 
 			    alert(data.showing);
+			    
 			},err => {
 			    alert(err);
 
@@ -92,7 +97,7 @@ export class ScanPage {
 		}
 	    })
 	    .catch((e: any) => {
-		alert('Un problème est survenu: ' + e);
+		alert('Impossible de charger le scanner: ' + e);
 	    });
 
 	
