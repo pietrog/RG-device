@@ -51,8 +51,8 @@ export class Api {
 	//this.ip_address = '0.0.0.0';
 	this.port = "3000";
 
-	//this.url = `http://${this.ip_address}:${this.port}`;
-	this.url = ''; //needed when server or run debug
+	this.url = `http://${this.ip_address}:${this.port}`;
+	//this.url = ''; //needed when server or run debug
 	this._socket = io(this.url);
 
 	const url = `${this.url}/api/device/idFromName`;

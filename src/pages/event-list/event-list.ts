@@ -7,6 +7,7 @@ import { Api } from '../../providers/api';
 
 import { Observable } from 'rxjs/Observable';
 
+import { RTPlayer } from '../../providers/player';
 
 @Component({
     selector: 'page-event-list',
