@@ -70,7 +70,7 @@ export class ScanPage {
 		    // camera permission was granted
 		    // start scanning
 		    let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-			console.log('Scanned something', text);
+			//console.log('Scanned something', text);
 			this._api.validateGoal(text);
 			this.qrScanner.hide(); // hide camera preview
 			scanSub.unsubscribe(); // stop scanning
