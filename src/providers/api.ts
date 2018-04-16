@@ -16,8 +16,6 @@ export class Api {
     private userScore: number;
     private teamName: string;
     private teamScore: number;
-    private otherTeamName: string;
-    private otherTeamScore: number;
 
     private m_player;
     private m_player_observer;
@@ -44,8 +42,8 @@ export class Api {
     constructor(
 	private _http: Http
     ) {
-	//this.ip_address = '192.168.1.109'; //ip address rg camp
-	this.ip_address = '192.168.0.21';
+	this.ip_address = '192.168.1.109'; //ip address rg camp
+	//this.ip_address = '192.168.0.21';
 	//this.ip_address = '192.168.0.45';
 	//this.ip_address = '10.0.0.7';
 	//this.ip_address = '0.0.0.0';
@@ -146,8 +144,6 @@ export class Api {
 	this.teamName = datas.team_name;
 	this.userScore = datas.user_score;
 	this.teamScore = datas.team_score;
-	this.otherTeamScore = datas.other_team_score;
-	this.otherTeamName = datas.other_team_name;
     }
 
     public sendCode(code: string, name: string, nb_points: number) {

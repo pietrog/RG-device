@@ -15,11 +15,12 @@
       <div class="name" text-uppercase>{{user.team_name}}</div>
       <div class="score">{{user.team_score}} pts</div>
     </div>
-    
-    <div class="other_team">
 
-      <div class="name" text-uppercase>{{user.other_team_name}}</div>
-      <div class="score">{{user.other_team_score}} pts</div>
+    <div *ngFor="let t of user.other_teams">
+      <div class="other_team">
+	<div class="name" text-uppercase>{{t.name}}</div>
+	<div class="score">{{t.score}} pts</div>
+      </div>
     </div>
   </div>
 

@@ -41,38 +41,7 @@ export class EventListPage {
     }
     
     public scanQR() {
-	this._nav.push(ScanPage);
-	
-	/*this._qrScanner.prepare()
-	    .then((status: QRScannerStatus) => {
-		if (status.authorized) {
-		    this._qrScanner.scan().subscribe((code: string) => {
-			/*if (err)
-			{
-			    console.log("error !! : " + err);
-			}
-			else
-			{
-			    console.log("OKKK !! : " + code);
-			    this._qrScanner.show();
-			    this._api.validateGoal(code);
-			    this._nav.push(ScanResultPage, { barcode: code});
-
-			//}
-		    });
-		    
-		}
-		else if (status.denied)
-		{
-		    console.log("c la merde");
-		}
-		else
-		{
-		    console.log("on sait pas");
-		}
-		
-	    });*/
-
+	this._nav.push(ScanPage);	
     }		    
 
 }
